@@ -11,7 +11,7 @@ namespace Rokolab.BitstampClient.Example
 
         private static void Main(string[] args)
         {
-            ILogFactory logFactory = new NLogFactory();
+            ILogFactory logFactory = null;
             IRequestAuthenticator ra = new RequestAuthenticator(_apiKey, _apiSecret, _clientId);
             IBitstampClient client = new BitstampClient(ra, logFactory);
 

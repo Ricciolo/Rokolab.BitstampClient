@@ -14,5 +14,6 @@ namespace Rokolab.BitstampClient
         bool CancelAllOrders();
         BuySellResponse Buy(double amount, double price);
         BuySellResponse Sell(double amount, double price);
+        BitcoinWithdrawalResponse BitcoinWithdrawal(double amount, string address);
     }
 }

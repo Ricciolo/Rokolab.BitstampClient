@@ -19,6 +19,7 @@ namespace Rokolab.BitstampClient
         private const string _orderStatusRoute = "https://www.bitstamp.net/api/order_status/";
         private const string _buyRoute = "https://www.bitstamp.net/api/v2/buy/btcusd/";
         private const string _sellRoute = "	https://www.bitstamp.net/api/v2/sell/btcusd/";
+        private const string _bitCoinWithdrawal = "https://www.bitstamp.net/api/bitcoin_withdrawal/";
         private object _lock = new object();
         private DateTime _lastApiCallTimestamp;
         private readonly ILog _log;
@@ -213,6 +214,29 @@ namespace Rokolab.BitstampClient
                 catch (Exception ex)
                 {
                     _log.TraceException("BitstampClient@Sell", ex);
+                    return null;
+                }
+            }
+        }
+
+        public BitcoinWithdrawalResponse BitcoinWithdrawal(double amount, string address)
+        {
+            lock (_lock)
+            {
+                try
+                {
+                    var request = GetAuthenticatedRequest(Method.POST);
+                    request.AddParameter("amount", amount.ToString().Replace(",", "."));
+                    request.AddParameter("address", address);
+                    request.AddParameter("instant", 0);
+
+                    var response = new RestClient(_bitCoinWithdrawal).Execute(request);
+                    _lastApiCallTimestamp = DateTime.Now;
+                    return JsonConvert.DeserializeObject<BitcoinWithdrawalResponse>(response.Content);
+                }
+                catch (Exception ex)
+                {
+                    _log.TraceException("BitstampClient@BitcoinWithdrawal", ex);
                     return null;
                 }
             }

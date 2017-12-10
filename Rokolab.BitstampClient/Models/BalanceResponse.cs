@@ -2,15 +2,15 @@
 {
     public class BalanceResponse
     {
-        public string usd_balance { get; set; }
-        public string btc_balance { get; set; }
-        public string eur_balance { get; set; }
-        public string usd_reserved { get; set; }
-        public string btc_reserved { get; set; }
-        public string eur_reserved { get; set; }
-        public string usd_available { get; set; }
-        public string btc_available { get; set; }
-        public string eur_available { get; set; }
-        public string fee { get; set; }
+        public double usd_balance { get; set; }
+        public double btc_balance { get; set; }
+        public double eur_balance { get; set; }
+        public double usd_reserved { get; set; }
+        public double btc_reserved { get; set; }
+        public double eur_reserved { get; set; }
+        public double usd_available { get; set; }
+        public double btc_available { get; set; }
+        public double eur_available { get; set; }
+        public double fee { get; set; }
     }
 }
